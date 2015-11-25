@@ -27,6 +27,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# GCM_DEVICE_MODEL = "gcm.Device" # default gcm.Device
+GCM_IOS_APIKEY = "AIzaSyCyqVrBAkPTtp739KiZ5PQYZ0L8f2R_JOw"
 
 # Application definition
 
@@ -39,6 +41,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'logs',
     'rest_framework',
+    'gcm',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -74,7 +77,7 @@ WSGI_APPLICATION = 'sonar.wsgi.application'
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.AllowAny',),
-    'PAGE_SIZE': 10
+    'PAGE_SIZE': 20
 }
 
 # Database

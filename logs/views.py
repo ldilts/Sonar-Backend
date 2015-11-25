@@ -1,13 +1,15 @@
 from django.shortcuts import get_object_or_404, render
 from rest_framework import viewsets
 from logs.serializers import LogSerializer
+from gcm.api import DevicesViewSet
+from rest_framework.permissions import AllowAny
 
 from logs.models import Log
 
 # Create your views here.
 
 def index(request):
-    latest_log_list = Log.objects.order_by('-log_date')[:50]
+    latest_log_list = Log.objects.order_by('-log_date')[:20]
     context = {'latest_log_list': latest_log_list}
     return render(request, 'logs/index.html', context)
 
@@ -19,5 +21,8 @@ class LogViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows logs to be viewed or edited.
     """
-    queryset = Log.objects.order_by('-log_date')[:50]
+    queryset = Log.objects.order_by('-log_date')[:20]
     serializer_class = LogSerializer
+
+class CustomDevice(DevicesViewSet):
+    permission_classes = [AllowAny]

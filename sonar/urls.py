@@ -16,6 +16,7 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 from rest_framework import routers
+from gcm.routers import router as gcm_router
 # from sonar.logs import views
 import sys
 sys.path.append('/Users/Lucas/Desktop/embedded/sonar/logs')
@@ -24,6 +25,8 @@ import views
 
 router = routers.DefaultRouter()
 router.register(r'log', views.LogViewSet)
+
+router.register(r'devices', views.CustomDevice)
 
 urlpatterns = [
     url(r'^logs/', include('logs.urls', namespace="logs")),

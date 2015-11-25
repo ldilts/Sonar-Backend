@@ -2,6 +2,7 @@ import datetime
 
 from django.db import models
 from django.utils import timezone
+from gcm.utils import get_device_model
 
 # Create your models here.
 class Log(models.Model):
@@ -17,3 +18,11 @@ class Log(models.Model):
         was_published_recently.admin_order_field = 'log_date'
     	was_published_recently.boolean = True
     	was_published_recently.short_description = 'Published recently?'
+
+    # def save(self, *args, **kwargs):
+    #     'faz alguma coisa'
+    #     super(Log, self).save(*args, **kwargs)
+
+
+# @receiver(post_save, sender=Log)
+# def func(sender, **kwargs):
