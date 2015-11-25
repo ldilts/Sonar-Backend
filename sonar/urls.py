@@ -21,15 +21,21 @@ from gcm.routers import router as gcm_router
 import sys
 sys.path.append('/Users/Lucas/Desktop/embedded/sonar/logs')
 
-import views
+import logs.views as logs_views
+
+import sys
+sys.path.append('/Users/Lucas/Desktop/embedded/sonar/distances')
+
+import distances.views as distances_views
 
 router = routers.DefaultRouter()
-router.register(r'log', views.LogViewSet)
-
-router.register(r'devices', views.CustomDevice)
+router.register(r'log', logs_views.LogViewSet)
+router.register(r'distance', distances_views.DistanceViewSet)
+router.register(r'devices', logs_views.CustomDevice)
 
 urlpatterns = [
     url(r'^logs/', include('logs.urls', namespace="logs")),
+    url(r'^distances/', include('distances.urls', namespace="distances")),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^', include(router.urls)),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),

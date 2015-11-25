@@ -1,0 +1,9 @@
+{% if latest_distance_list %}
+    <ul>
+    {% for distance in latest_distance_list %}
+        <li><a href="{% url 'distances:detail' distance.id %}">{{ distance.dist_date }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No distances are available.</p>
+{% endif %}
