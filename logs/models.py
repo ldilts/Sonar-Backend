@@ -3,6 +3,17 @@ import datetime
 from django.db import models
 from django.utils import timezone
 from gcm.utils import get_device_model
+from django.dispatch import receiver
+from django.db.models.signals import post_save
+from django.db.models import signals
+
+# @receiver(post_save, sender=Log)
+def my_callback(sender, **kwargs):
+    print("Request finished!")
+    Device = get_device_model()
+    device = Device.objects.get(dev_id=241120152203)
+    device.send_message(notification={"sound":"Default", "badge":"1", "title":"Sonar", "body":"Door notification!"})
+    print("Notification sent!")
 
 # Create your models here.
 class Log(models.Model):
@@ -23,6 +34,4 @@ class Log(models.Model):
     #     'faz alguma coisa'
     #     super(Log, self).save(*args, **kwargs)
 
-
-# @receiver(post_save, sender=Log)
-# def func(sender, **kwargs):
+signals.post_save.connect(my_callback, sender=Log)
