@@ -11,8 +11,8 @@ from django.db.models import signals
 def my_callback(sender, **kwargs):
     print("Request finished!")
     Device = get_device_model()
-    device = Device.objects.get(dev_id=241120152203)
-    device.send_message(notification={"sound":"Default", "badge":"1", "title":"Sonar", "body":"Door notification!"})
+    device = Device.objects.get(dev_id=271120152319)
+    device.send_message(notification={"sound":"default", "badge":"0", "title":"default", "body":"Door notification!"})
     print("Notification sent!")
 
 # Create your models here.
