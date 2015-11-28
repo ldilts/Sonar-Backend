@@ -21,7 +21,8 @@ class LogViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows logs to be viewed or edited.
     """
-    queryset = Log.objects.order_by('-log_date')[:20]
+    # queryset = Log.objects.order_by('-log_date')[:20]
+    queryset = Log.objects.all().order_by('-log_date')
     serializer_class = LogSerializer
 
 class CustomDevice(DevicesViewSet):
